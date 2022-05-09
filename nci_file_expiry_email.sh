@@ -18,22 +18,22 @@ result=`ssh gadi "nci-file-expiry list-warnings | head -n 101" 2> /dev/null`
 
 # In case .bashrc is outputting to stdout use sed to discard
 #  everything before the header line of nci-file-expiry
-result=`echo $result | \
+result=`echo "$result" | \
         sed '/EXPIRES AT           GROUP     SIZE  PATH/,$!d'`
 
 # If the remaining output is only one line then it's just header
 #  send a message indicating there's no output of note.
 num_lines=`echo "$result" | wc -l`
 
-if [[ $num_line -le 1 ]]; then
+if [[ $num_lines -gt 1 ]]; then
     message="Files due to expire have been found.\n"
-    message="${message}The top $(num_lines-1) files are:\n"
+    message="${message}The first $( expr $num_lines - 1 ) files found are:\n"
     message="${message}$result"
 fi
 
 # If a message has been set then send an mail to the user
 #  which will get sent to their email.
 if [[ -n "$message" ]]; then
-    echo "$message" | mail -s "NCI File Expiry Report" $USER
+    echo -e "$message" | mail -s "NCI File Expiry Report" $USER
 fi
 
