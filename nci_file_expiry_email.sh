@@ -6,7 +6,7 @@
 #  on AccessDev or similar.
 # The cron entry for this script should look something like the
 #  following if you want it to run at midnight every day:
-#  * 0 * * * /home/548/jt4085/cron_scripts/nci_file_expiry_email.sh
+#  0 0 * * * /home/548/jt4085/cron_scripts/nci_file_expiry_email.sh
 # Remember to chmod +x this script.
 
 # SSH to gadi and run the file expiry command
