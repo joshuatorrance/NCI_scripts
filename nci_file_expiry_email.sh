@@ -26,8 +26,8 @@ result=`echo "$result" | \
 num_lines=`echo "$result" | wc -l`
 
 if [[ $num_lines -gt 1 ]]; then
-    message="Files due to expire have been found.\n"
-    message="${message}The first $( expr $num_lines - 1 ) files found are:\n"
+    message="Files due to expire have been found.\n\n"
+    message="${message}The first $( expr $num_lines - 1 ) files found are:\n\n"
     message="${message}$result"
 fi
 
