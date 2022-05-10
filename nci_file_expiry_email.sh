@@ -22,7 +22,7 @@ result=`echo "$result" | \
         sed '/EXPIRES AT           GROUP     SIZE  PATH/,$!d'`
 
 # If the remaining output is only one line then it's just header
-#  send a message indicating there's no output of note.
+#  send no email if there's no output of note.
 num_lines=`echo "$result" | wc -l`
 
 if [[ $num_lines -gt 1 ]]; then
